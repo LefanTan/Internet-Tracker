@@ -20,6 +20,7 @@ function Submit(){
                     alert(userInput + " : " + correctPass);
                 }else{
                     alert("Correct");
+                    window.location.href = "home.html"
                 }
             });   
         }
