@@ -17,9 +17,8 @@ function Submit(){
             chrome.storage.sync.get("pass", function(result) {
                var correctPass = result.pass;
                if(correctPass != userInput){
-                    alert(userInput + " : " + correctPass);
+                    alert("Wrong Password, try again");
                 }else{
-                    alert("Correct");
                     window.location.href = "home.html"
                 }
             });   
