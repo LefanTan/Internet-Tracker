@@ -4,13 +4,16 @@ var visitedLinks = {};
 
 chrome.tabs.onActivated.addListener(TabActivated);
 
-var currentTime = 0;
+
 var timeSpent = 0;
 var startSet;
 var endSet;
 var currentHostName = "";
+var currentTime;
 
 function TabActivated(activeInfo){
+ 
+
     if(!CheckIfTracking()){
         console.log("Not tracking");
         return;
@@ -22,11 +25,12 @@ function TabActivated(activeInfo){
         console.log(currentHostName);
     });
 
-    if(currentTime == 0){
+    if(currentTime == null){
         currentTime = GetTime();
         //console.log("CurrentTIme : " + currentTime);
     }else{
         timeSpent = GetTimeSpent(currentTime, GetTime());
+        console.log("currentTime" + currentTime + "Gettime- " +GetTime() );
         currentTime = GetTime();
         //console.log("Time spent: " + timeSpent);
     }
