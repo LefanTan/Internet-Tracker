@@ -1,5 +1,5 @@
 chrome.storage.sync.get("pass", function(result){
-    document.getElementById("Intro").innerHTML = result.pass;
+    document.getElementById("intro").innerHTML = result.pass;
 })
 
 document.getElementById("submit").addEventListener("click", Submit);
