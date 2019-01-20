@@ -1,9 +1,9 @@
 chrome.storage.sync.get("pass", function(result){
     //document.getElementById("intro").innerHTML = result.pass;
     if(result.pass != null || result.pass == ""){
-        document.getElementById("intro").innerHTML = "Please Enter New Password and click 'Login' to save";
-    }else{
         document.getElementById("intro").innerHTML = "Please Enter Password To Login";
+    }else{
+        document.getElementById("intro").innerHTML = "Please Enter New Password and click 'Login' to save";
     }
 })
 
