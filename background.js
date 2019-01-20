@@ -12,6 +12,7 @@ var currentHostName = "";
 
 function TabActivated(activeInfo){
     if(!CheckIfTracking()){
+        console.log("Not tracking");
         return;
     }
 

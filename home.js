@@ -15,6 +15,7 @@ chrome.storage.sync.get("visitedLink", function(result) {
  
     for(var i = 0; i < Object.keys(sortedItems).length; i++){
         var item = sortedItems[i];
+        console.log(item);
         if(i < 4 && item[0] != ""){
             topVisited[item[0]] = item[1];
         }
@@ -23,7 +24,7 @@ chrome.storage.sync.get("visitedLink", function(result) {
     var index = 1;
     for(item in topVisited){
         if(document.getElementById("top" + index) && topVisited[item] != 0 && item != "newtab"){ 
-            document.getElementById("top" + index).innerHTML =  item + " - " + topVisited[item] + " minutes spent"; 
+            document.getElementById("top" + index).innerHTML =  item + " - " + topVisited[item] + " minute(s) spent"; 
         }
         index += 1;
     }
