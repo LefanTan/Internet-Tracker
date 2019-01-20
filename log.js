@@ -22,9 +22,6 @@ chrome.storage.sync.get("visitedLink", function(result) {
         }         
     }
 
-    if(textObj.innerHTML == ""){
-        textObj.innerHTM += "No logs available";
-    }
     
 });
 
