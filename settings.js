@@ -18,21 +18,23 @@ chrome.storage.sync.get("startSet", function(result){
     if(result.startSet != null){
         console.log("Startdate: " + result.startSet);
         document.getElementById("startsettime").value = result.startSet;
+    }else{
+        chrome.storage.sync.set({"startSet": 0}, function(){
+            document.getElementById("startsettime").value = 0
+        });
     }
-    chrome.storage.sync.set({"startSet": 0}, function(){
-        document.getElementById("startsettime").value = 0
-    });
+
 });
 
 chrome.storage.sync.get("endSet", function(result){
     if(result.endSet != null){
         console.log("Enddate: " + result.endSet);
         document.getElementById("endsettime").value = result.endSet;
+    }else{
+        chrome.storage.sync.set({"endSet": 0}, function(){
+            document.getElementById("endsettime").value = 0
+        });
     }
-
-    chrome.storage.sync.set({"endSet": 0}, function(){
-        document.getElementById("endsettime").value = 0
-    });
 });
 
 
