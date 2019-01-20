@@ -23,7 +23,7 @@ chrome.storage.sync.get("visitedLink", function(result) {
     var index = 1;
     for(item in topVisited){
         if(document.getElementById("top" + index) && topVisited[item] != 0 && item != "newtab"){ 
-            document.getElementById("top" + index).innerHTML =  item + " => " + topVisited[item] + " time spent"; 
+            document.getElementById("top" + index).innerHTML =  item + " - " + topVisited[item] + " minutes spent"; 
         }
         index += 1;
     }

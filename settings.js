@@ -1,11 +1,3 @@
-document.getElementById("emailSubmit").addEventListener("click", UserAddress);
-
-function UserAddress(){
-    var userEmail = document.getElementById("email").value;
-	chrome.storage.sync.set({"email": userEmail}, function() {
-                console.log('email updated');
-              }); 
-}
 
 document.getElementById("changepass").addEventListener("click", PassChange);
 document.getElementById("startsettime").addEventListener("change", StartSetTime);
