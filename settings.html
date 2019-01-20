@@ -23,9 +23,13 @@
 			<p>Example time tracking time</p>
 			<h2>Email To Send Data To</h2>
 			<form>
-			Email: <input type="text" name="Email" value="InputEmailHere"><br>
+			Email: <input type="text" id="email" name="Email" value="InputEmailHere"><br>
 			<br>
-			<center><input type="submit" value="Save Email"></center>
+			<center><input type="submit" id="emailSubmit" value="Save Email"></center>
+			<script>
+				var userEmail = "test";
+				document.getElementById("myInput").value = userEmail;
+			</script>
 			</form>
 			<h2><a href="home.html">Save Settings</a></h2>
 		</div>
