@@ -22,7 +22,10 @@ chrome.storage.sync.get("trackingTime", function(result){
 function TabActivated(activeInfo){
     chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
         var url = tabs[0].url;
-        currentHostName = GetDomain(url);
+        if(url == ""){
+        }else{
+            currentHostName = GetDomain(url);
+        }
     });
 
     if(currentTime == 0){
