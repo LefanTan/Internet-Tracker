@@ -19,7 +19,7 @@ chrome.storage.sync.get("visitedLink", function(result) {
 				linebreak = document.createElement("p");
 				textObj.appendChild(linebreak);
             }else{
-                textObj.innerHTML += link + " - " + time + "minute(s) spent \n \n";
+                textObj.innerHTML += link + " - " + time + " minute(s) spent \n \n";
 				linebreak = document.createElement("p");
 				textObj.appendChild(linebreak);
             }
