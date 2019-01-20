@@ -18,6 +18,7 @@ function Submit(){
                var correctPass = result.pass;
                if(correctPass != userInput){
                     alert("Wrong Password, try again");
+                    window.location.href = "popup.html"
                 }else{
                     window.location.href = "home.html"
                 }
