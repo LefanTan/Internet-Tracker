@@ -3,13 +3,17 @@
 var visitedLinks = {};
 
 chrome.tabs.onActivated.addListener(TabActivated);
-
+chrome.tabs.onUpdated.addListener(TabUpdate);
 
 var timeSpent = 0;
 var startSet;
 var endSet;
 var currentHostName = "";
 var currentTime;
+
+function TabUpdate(tabId,changeInfo,tab){
+    currentHostName = GetDomain(tab.url);
+}
 
 function TabActivated(activeInfo){
  
@@ -22,7 +26,7 @@ function TabActivated(activeInfo){
     chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
         var url = tabs[0].url;
         currentHostName = GetDomain(url);
-        console.log(currentHostName);
+        //console.log(currentHostName);
     });
 
     if(currentTime == null){
@@ -30,7 +34,7 @@ function TabActivated(activeInfo){
         //console.log("CurrentTIme : " + currentTime);
     }else{
         timeSpent = GetTimeSpent(currentTime, GetTime());
-        console.log("currentTime" + currentTime + "Gettime- " +GetTime() );
+        console.log("currentTime" + currentTime + "Gettime- " +GetTime() + "Current host name:" + currentHostName);
         currentTime = GetTime();
         //console.log("Time spent: " + timeSpent);
     }
