@@ -1,15 +1,26 @@
+
+//key is url, value is time
 var visitedLinks = {};
-console.log("tabs[0].url");
 
-var currentUrl = "";
-
-chrome.tabs.onActivated.addListener(NewActive);
 chrome.tabs.onUpdated.addListener(TabUpdated);
 
-function NewActive(tab){
-    console.log(currentUrl);
+function TabUpdated(tabId,changeInfo,tab){
+    var url = tab.url;
+    var hostName = GetDomain(url);
+
+    if(hostName in visitedLinks){
+        visitedLinks[hostName] += 3;
+    }else{
+        visitedLinks[hostName] = 1;
+    } 
+
+    for (var key in visitedLinks){
+        console.log(key + "'s amount of time visited: " + visitedLinks[key]);
+    }
 }
 
-function TabUpdated(tab){
-    currentUrl = tab.url;
+
+function GetDomain(url){
+    var hostname = (new URL(url)).hostname;
+    return hostname;
 }
