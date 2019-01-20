@@ -15,13 +15,20 @@ chrome.storage.sync.get("visitedLink", function(result) {
                 if(link == "newtab"){
                     text = "Empty Page"
                 }
-                textObj.innerHTML += text + " - "  + "less than 1 minute spent";
+                textObj.innerHTML += text + " - "  + "less than 1 minute spent \n \n";
+				linebreak = document.createElement("p");
+				textObj.appendChild(linebreak);
             }else{
-                textObj.innerHTML += link + " - " + time + "minute(s) spent";
+                textObj.innerHTML += link + " - " + time + "minute(s) spent \n \n";
+				linebreak = document.createElement("p");
+				textObj.appendChild(linebreak);
             }
         }         
     }
 
+    if(textObj.innerHTML == ""){
+        textObj.innerHTM += "No logs available";
+    }
     
 });
 
