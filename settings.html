@@ -14,12 +14,9 @@
 			<h1>Settings</h1>
 		</div>
 		<div class=bodytext>
-			<h2>Filter Search</h2>
-			<p>Change the filter</p>
 			<h2>Edit Time Tracking</h2>
-			<p>Example time tracking time</p>
-		
-		<select class="form-control" name="timeid" id="startsettime">
+		<div id=settingtext>
+			<select class="form-control" name="timeid" id="startsettime">
 		<option value="" selected="" disabled="">Start Time</option>
 		<option value="0">12:00 AM</option>
 		<option value="1">1:00 AM</option>
@@ -46,8 +43,8 @@
 		<option value="22">10:00 PM</option>
 		<option value="23">11:00 PM</option>
 		</select>
-		to
-		<select class="form-control" name="timeid" id="endsettime">
+			to
+			<select class="form-control" name="timeid" id="endsettime">
 		<option value="" selected="" disabled="">End Time</option>
 		<option value="0">12:00 AM</option>
 		<option value="1">1:00 AM</option>
@@ -74,13 +71,28 @@
 		<option value="22">10:00 PM</option>
 		<option value="23">11:00 PM</option>
 		</select>
+		</div>
+		<div>
 			<h2>Email To Send Data To</h2>
 			<form>
-			Email: <input type="text" id="email" name="Email" value="InputEmailHere"><br>
-			<br>
-			<center><input type="submit" id="emailSubmit" value="Save Email"></center>
+				Email: <input type="text" id="email" name="Email" value="InputEmailHere"><br>
+				<br>
+				<center><input type="submit" id="emailSubmit" value="Save Email"></center>
 			</form>
-			<h2><a href="home.html">Save Settings</a></h2>
+		</div>
+		<div>
+			<h2>Password Change</h2>
+			<div id=settingtext>
+			Old Password:
+			<input type="password" id="OldPassword" value="Password">
+			</div>
+			<div id=settingtext>
+			New Password:
+			<input type="password" id="NewPassword" value="Password">
+			</div><br>
+			<center><input type="submit" id="changepass" value="Change Password"></center>
+		</div>
+		<h2><a href="home.html">Save Settings</a></h2>
 		</div>
 		<div class=hackEDposition>
 			HackED 2019 | Edmonton, Alberta<br>Janurary 19, 2019
