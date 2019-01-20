@@ -23,8 +23,13 @@ chrome.storage.sync.get("visitedLink", function(result) {
     
     var index = 1;
     for(item in topVisited){
-        if(document.getElementById("top" + index) && topVisited[item] != 0 && item != "newtab"){ 
-            document.getElementById("top" + index).innerHTML =  item + " - " + topVisited[item] + " minute(s) spent"; 
+        if(document.getElementById("top" + index)  && item != "newtab"){ 
+            if(topVisited[item] == 0){
+                document.getElementById("top" + index).innerHTML =  item + " - "  + "less than 1 minute spent"; 
+            }else{
+                document.getElementById("top" + index).innerHTML =  item + " - " + topVisited[item] + " minute(s) spent"; 
+            }
+           
         }
         index += 1;
     }
