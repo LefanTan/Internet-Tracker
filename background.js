@@ -18,10 +18,8 @@ function TabActivated(activeInfo){
     
     chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
         var url = tabs[0].url;
-        if(url == ""){
-        }else{
-            currentHostName = GetDomain(url);
-        }
+        currentHostName = GetDomain(url);
+        console.log(currentHostName);
     });
 
     if(currentTime == 0){
