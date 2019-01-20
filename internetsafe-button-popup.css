@@ -85,9 +85,9 @@ input[type=submit]:hover {
 	text-align: center;
 }
 .form-control{
-	width:40%;
+	width:44%;
 	height:40px;
-	padding:5px 10px;
+	padding:10px 10px;
 	font-size:14px;
 	line-height:1.5;
 	color:#333;
@@ -103,5 +103,8 @@ input[type=submit]:hover {
 	position: relative;
 	top: 0px;
 }
-	
-
+.trackingtext{
+	/*display: inline;*/
+	position: relative;
+	top: 0px;
+}
