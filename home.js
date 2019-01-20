@@ -1,6 +1,6 @@
 var visitedLinkData = {};
 var totalTimeSpent = 0;
-var topFour = {};
+var topVisited = {};
 
 document.getElementById("timeSpent").innerHTML = 0;
 
@@ -15,18 +15,54 @@ chrome.storage.sync.get("visitedLink", function(result) {
  
     for(var i = 0; i < Object.keys(sortedItems).length; i++){
         var item = sortedItems[i];
-        if(i <4 && item[0] != ""){
-            topFour[item[0]] = item[1];
+        if(i < 4 && item[0] != ""){
+            topVisited[item[0]] = item[1];
         }
     }
-
-    for (item in topFour){
-     console.log("Key: " + item);
-
+    
+    var index = 1;
+    for(item in topVisited){
+        if(document.getElementById("top" + index) && topVisited[item] != 0 && item != "newtab"){ 
+            document.getElementById("top" + index).innerHTML =  item + " => " + topVisited[item] + " time spent"; 
+        }
+        index += 1;
     }
+
 
     document.getElementById("timeSpent").innerHTML = GetTimeString(totalTimeSpent);
  });
+
+ var startSet;
+ var endSet;
+ var textObj = document.getElementById("trackingText");
+
+ chrome.storage.sync.get("startSet", function(result){
+       
+    if(result.startSet != null){
+        startSet = result.startSet;
+        if(startSet > 12){
+            startSet = startSet-12 + "pm"
+        }else{
+            startSet += "am"
+        }
+        textObj.innerHTML = "Tracking from " + startSet;
+    }else{
+        textObj.innerHTML = "Tracking from " + "0am to 0am"
+    }
+});
+
+chrome.storage.sync.get("endSet", function(result){
+    if(result.endSet != null){
+        endSet = result.endSet;
+        if(endSet > 12){
+            endSet = endSet-12 + "pm"
+        }else{
+            endSet += "am"
+        }
+        textObj.innerHTML += " to " + endSet;
+    }
+});
+
 
  function GetTimeString(minutes){
      var hours = Math.floor(minutes/60);

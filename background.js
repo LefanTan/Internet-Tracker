@@ -2,24 +2,19 @@
 //key is url, value is time
 var visitedLinks = {};
 
-chrome.tabs.onUpdated.addListener(TabUpdated);
 chrome.tabs.onActivated.addListener(TabActivated);
 
 var currentTime = 0;
-var timeSpent = 0
-
-var isTracking = true;
-
+var timeSpent = 0;
+var startSet;
+var endSet;
 var currentHostName = "";
 
-chrome.storage.sync.get("trackingTime", function(result){
-    if(result.tracking != null){
-        //
+function TabActivated(activeInfo){
+    if(!CheckIfTracking()){
+        return;
     }
 
-});
-
-function TabActivated(activeInfo){
     chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
         var url = tabs[0].url;
         if(url == ""){
@@ -43,21 +38,10 @@ function TabActivated(activeInfo){
         visitedLinks[currentHostName] = timeSpent;
     }
 
-    //for debugs
-    if(visitedLinks){
-        for (var key in visitedLinks){
-           // console.log(key + "'s amount of time: " + visitedLinks[key]);
-        }
-    }
-
     chrome.storage.sync.set({"visitedLink": visitedLinks}, function() {
         // Notify that we saved.
         console.log('Link data saved');
     });
-}
-
-function TabUpdated(tabId,changeInfo,tab){
-
 }
 
 //domain filter can be implemented here
@@ -78,4 +62,32 @@ function GetTime(){
 function GetTimeSpent(previousTime, currentTime){
     var timeSpent = currentTime - previousTime;
     return timeSpent;
+}
+
+function CheckIfTracking(){
+    chrome.storage.sync.get("startSet", function(result){
+        if(result.startSet != null){
+            startSet = result.startSet;
+        }
+    });
+
+    chrome.storage.sync.get("endSet", function(result){
+        if(result.endSet != null){
+            endSet = result.endSet;
+        }
+    });
+
+    var date = new Date();
+    var hour = date.getHours();
+    var state = true;
+    if(hour >= startSet && hour < endSet){
+        state = true;
+    }else{
+        state =false;
+    }
+
+    chrome.storage.sync.set({"trackingState": state}, function(){});
+
+    return state;
+    
 }
