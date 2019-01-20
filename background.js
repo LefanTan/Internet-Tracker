@@ -8,7 +8,13 @@ chrome.tabs.onActivated.addListener(TabActivated);
 var currentTime = 0;
 var timeSpent = 0
 
+var isTracking = true;
+
 var currentHostName = "";
+
+chrome.storage.sync.get("trackingTime", function(result){
+
+});
 
 function TabActivated(activeInfo){
     chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
@@ -18,11 +24,11 @@ function TabActivated(activeInfo){
 
     if(currentTime == 0){
         currentTime = GetTime();
-        console.log("CurrentTIme : " + currentTime);
+        //console.log("CurrentTIme : " + currentTime);
     }else{
         timeSpent = GetTimeSpent(currentTime, GetTime());
         currentTime = GetTime();
-        console.log("Time spent: " + timeSpent);
+        //console.log("Time spent: " + timeSpent);
     }
 
     if (currentHostName in visitedLinks){
@@ -34,26 +40,18 @@ function TabActivated(activeInfo){
     //for debugs
     if(visitedLinks){
         for (var key in visitedLinks){
-            console.log(key + "'s amount of time: " + visitedLinks[key]);
+           // console.log(key + "'s amount of time: " + visitedLinks[key]);
         }
     }
 
+    chrome.storage.sync.set({"visitedLink": visitedLinks}, function() {
+        // Notify that we saved.
+        console.log('Link data saved');
+    });
 }
 
 function TabUpdated(tabId,changeInfo,tab){
-    var url = tab.url;
-    var hostName = GetDomain(url);
 
-    if (hostName in visitedLinks){
-        visitedLinks[hostName] += timeSpent;
-    }else{
-        visitedLinks[hostName] = timeSpent;
-    }
-
-    for (var key in visitedLinks){
-       // console.log(key + "'s amount of time: " + visitedLinks[key]);
-    }
-    //console.log(GetTime());
 }
 
 //domain filter can be implemented here
