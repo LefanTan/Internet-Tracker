@@ -15,7 +15,7 @@ function TabActivated(activeInfo){
         console.log("Not tracking");
         return;
     }
-
+    
     chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
         var url = tabs[0].url;
         if(url == ""){
