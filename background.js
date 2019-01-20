@@ -13,6 +13,9 @@ var isTracking = true;
 var currentHostName = "";
 
 chrome.storage.sync.get("trackingTime", function(result){
+    if(result.tracking != null){
+        //
+    }
 
 });
 
